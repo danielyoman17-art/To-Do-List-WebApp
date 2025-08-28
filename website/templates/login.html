@@ -1,0 +1,23 @@
+{% extends 'home.html'%}
+{% block title %}Login{% endblock title %}
+{% block content%}
+    <div class="wrapper">
+        <div class="form-container">
+            <div class="half-circle">
+                <p class="title">Login</p>
+            </div>
+            <form method='POST'>
+                <p class="info-text">you don't have an account? <a href="/sign-up" class="link">Sign Up here</a></p>
+                <div class="floating-input">
+                    <input type="text" id="email" class="input" name='email' required>
+                    <label for="email">Email</label>
+                </div>
+                <div class="floating-input">
+                    <input type="password" id="password2" class="input" name='password2' required>
+                    <label for="password2">Password</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
