@@ -14,7 +14,7 @@ loadTask();
 document.querySelector('#cancel , .modal-overlay , #addTask').addEventListener('click',(e)=>{
     if(e.target === document.querySelector('.modal-overlay') || e.target === document.querySelector('#cancel') || e.target === document.querySelector('#addTask')){
         $('.modal-overlay').fadeOut()
-        document.querySelector('#input-task').value = ''
+        inputTask.value = ''
     }
 })
 

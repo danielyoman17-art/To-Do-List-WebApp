@@ -1,2 +1,3 @@
-venv
+.venv/
+front_end
 *.db
