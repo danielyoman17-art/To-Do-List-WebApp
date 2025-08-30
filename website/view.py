@@ -17,7 +17,6 @@ def load():
     data = {'darkMode':False,'tasks':[]}
     if current_user.data:
         data = json.loads(current_user.data)
-        print(data)
         
     return jsonify(data)
     # and send it
