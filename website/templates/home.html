@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
-
     <script defer src="{{url_for('static',filename='js/jQuery.js')}}"></script>
     <script defer src="{{url_for('static',filename='js/animation.js')}}"></script>
 
@@ -12,9 +12,6 @@
     <title>{% block title %}Todo List{% endblock title %}</title>
 </head>
 <body class="">
-    <div class="loading">
-        <div class="spinner"></div>
-    </div>
 
     {% with messages = get_flashed_messages(with_categories = true) %}
         {% if messages %}
@@ -31,6 +28,9 @@
         {% endif %}
     {% endwith %}
     {% block content %}
+    <div class="loading">
+        <div class="spinner"></div>
+    </div>
     <div class="oval"></div>
     <div>
         <!-- header -->
@@ -132,8 +132,7 @@
             </svg>
         </button>
     </div>
-    <script defer src="{{url_for('static',filename='js/index.js')}}"></script>
     {% endblock %}
-
+    <script defer src="{{url_for('static',filename='js/index.js')}}"></script>
 </body>
 </html>

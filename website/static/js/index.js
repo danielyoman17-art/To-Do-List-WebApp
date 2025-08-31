@@ -52,14 +52,17 @@ function createTask(){
             text:inputValue,
             isComplete:false
         }
-        newData.tasks.push(newTask);
+        newData.tasks.push(newTask)
         inputValue.value = '';
+        return newTask
     }
 }
 
 addTask.addEventListener('click',()=>{
-    createTask();
-    updateTask(taskCategory);
+    new_task = createTask();
+    newItem = new taskItem(newTask,newData.tasks.length-1)
+    newItem.update()
+    console.log(newTask)
     saveTask(newData);
 })
 
