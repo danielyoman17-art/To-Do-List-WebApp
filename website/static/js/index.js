@@ -62,7 +62,6 @@ addTask.addEventListener('click',()=>{
     new_task = createTask();
     newItem = new taskItem(newTask,newData.tasks.length-1)
     newItem.update()
-    console.log(newTask)
     saveTask(newData);
 })
 
@@ -90,7 +89,6 @@ function taskItem(task,index) {
         task.isComplete = null
         this.item.classList.add('hide')
         saveTask()
-        console.table(newData.tasks)
     }
 
     this.btn = this.item.querySelector('.btn-del')
@@ -107,7 +105,6 @@ function taskItem(task,index) {
 
 function updateTask(state='all'){
     taskList.innerHTML = "";
-    console.log(newData)
     newData.tasks = newData.tasks.filter((task)=> task.isComplete !== null)
     let updatingTask = newData.tasks
     if(state == 'complete'){
@@ -121,7 +118,6 @@ function updateTask(state='all'){
         item.update()
     })
 
-    console.table(newData.tasks)
 }
 
 
@@ -179,7 +175,7 @@ function saveTask() {
         headers:{'Content-type':"application/json"},
         body:JSON.stringify(newData)
     })
-    .then(res => console.log(newData))
+    .then(res => res.json())
 
 }
 
