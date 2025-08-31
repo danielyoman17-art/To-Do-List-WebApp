@@ -89,11 +89,11 @@ body{
     transition: right 0.2s ease;
 }
 
-.dark .toggler{
+.toggler.active{
     background-color: var(--primary);
 }
 
-.dark .toggler::before{
+.toggler.active::before{
     right: 4px;
 }
 
@@ -238,7 +238,7 @@ nav{
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    gap: 10px;
+    /* gap: 10px; */
 }
 
 .container .title{
@@ -251,8 +251,19 @@ nav{
     padding: 0px 10px;
     display: flex;
     gap: 10px;
+    height: 42px;
     align-items: center;
     border-radius: 5px;
+    opacity: 1;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: height 0.2s ease, opacity 0.2s;
+}
+
+.task.hide{
+    opacity: 0;
+    height: 0;
+    margin-bottom: 0;
 }
 
 .task label{
@@ -274,7 +285,6 @@ nav{
 
 
 
-
 .btn-add{
     position: fixed;
     bottom: 50px;
@@ -282,23 +292,23 @@ nav{
 }
 
 .dropdown{
-    display: none;
-    z-index: 99;
+    display: flex;
+    z-index: 3;
     position: absolute;
+    justify-content: center;
+    width: 275px;
+    height: 0px;
     top: 62px;
     right: 36px;
     background-color: var(--bg);
     border-radius: var(--radius);
-    padding: 10px 0;
     flex-direction: column;
-    width: 275px;
     box-shadow: 0px 4px 4px 0px var(--shadow);
     overflow: hidden;
     transition: height 0.2s ease;
 }
 
 .dropdown.active{
-    display: flex;
     height: 250px;
 }
 
@@ -399,6 +409,7 @@ textarea{
 }
 
 .popup{
+    z-index: 9;
     display: flex;
     width: 90%;
     max-width: 1000px;
@@ -412,19 +423,18 @@ textarea{
     color: white;
     font-size: var(--normal-text);
     transition: top 0.5s;
-    z-index: 9;
 }
 
 .popup.show{
-    top: 35px;
+    top: 50px;
     transition: top 0.5s ease-in;
 }
 
-.popup.danger,.popup.error{
+.popup.danger{
     background-color: var(--danger);
 }
 
-.popup.info,.popup.message{
+.popup.info{
     background-color: var(--info);
 }
 
@@ -453,7 +463,6 @@ textarea{
     padding: 20px 30px;
     position: relative;
     overflow: hidden;
-    height: 500px;
 }
 
 .half-circle{
@@ -551,6 +560,7 @@ hr ~ p{
     border-radius: var(--radius);
     border: 1px solid black;
 }
+
 
 
 /* animation */

@@ -49,7 +49,7 @@ function createTask(){
     if (inputValue.length > 0 && inputValue.length < 100){
         newTask = {
             text:inputValue,
-            isCompleted:false
+            isComplete:false
         }
         newData.tasks.push(newTask);
         inputValue.value = '';
@@ -64,50 +64,58 @@ addTask.addEventListener('click',()=>{
 
 
 // create task item
-function createTaskItem(task,index) {
-    taskId = 'task#'+index
-    taskItem = document.createElement('div')
-    taskItem.classList.add('task')
-    taskItem.innerHTML = `
+function taskItem(task,index) {
+    this.taskId = 'task#'+index
+    this.item = document.createElement('div')
+    this.item.classList.add('task')
+    this.item.innerHTML = `
     
-        <input type="checkbox" id="${taskId}">
-        <label for="${taskId}" class="text">${task.text}</label>
+        <input type="checkbox" id="${this.taskId}">
+        <label for="${this.taskId}" class="text">${task.text}</label>
         <button class="btn btn-del">
             x
         </button>
     
     `
 
-    let checkbox = taskItem.querySelector('input')
-    checkbox.addEventListener('change',()=>{
-        task.isCompleted = checkbox.checked
-        updateTask(taskCategory)
-        saveTask(newData);
-    })
-    checkbox.checked = task.isCompleted
+    this.update = () =>{
+        taskList.append(this.item)
+    }
 
-    let btnDel = taskItem.querySelector('.btn-del')
-    btnDel.addEventListener('click',()=>{
-        deleteTask(index);
-        updateTask(taskCategory);
+    this.delete = ()=>{
+        task.isComplete = null
+        this.item.classList.add('hide')
+        console.table(newData.tasks)
+    }
+
+    this.btn = this.item.querySelector('.btn-del')
+    this.btn.addEventListener('click',()=>this.delete())
+
+    this.checkbox = this.item.querySelector('input')
+    this.checkbox.addEventListener('change',()=>{
+        task.isComplete = this.checkbox.checked
     })
 
-    taskList.append(taskItem)
+    this.checkbox.checked = task.isComplete
 }
 
-
-// update task
-function updateTask(state){
-    taskList.innerHTML = '';
-    let taskUpdating = newData.tasks;
-    if (state == 'complete'){
-        taskUpdating = newData.tasks.filter((task)=> task.isCompleted===true)
-    }else if (state == 'uncomplete'){
-        taskUpdating = newData.tasks.filter((task)=> task.isCompleted===false)
+function updateTask(state='all'){
+    taskList.innerHTML = "";
+    console.log(newData)
+    newData.tasks = newData.tasks.filter((task)=> task.isComplete !== null)
+    let updatingTask = newData.tasks
+    if(state == 'complete'){
+        updatingTask = newData.tasks.filter((task)=> task.isComplete === true)
     }
-    taskUpdating.forEach(function(task,index){
-        createTaskItem(task,index);
+    if(state == 'uncomplete'){
+        updatingTask = newData.tasks.filter((task)=> task.isComplete === false)
+    }
+    updatingTask.forEach((task,index)=>{
+        item = new taskItem(task,index)
+        item.update()
     })
+
+    console.table(newData.tasks)
 }
 
 
