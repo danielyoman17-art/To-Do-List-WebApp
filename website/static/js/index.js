@@ -4,6 +4,7 @@ const addTask = document.querySelector('#addTask')
 const delAll = document.querySelector('#delAll')
 const navLinks = document.querySelectorAll('.nav-link')
 const toggler = document.querySelector('#toggler-mode')
+const loading = document.querySelector('.loading')
 
 
 let newData;
@@ -73,7 +74,7 @@ function taskItem(task,index) {
         <input type="checkbox" id="${this.taskId}">
         <label for="${this.taskId}" class="text">${task.text}</label>
         <button class="btn btn-del">
-            x
+            &times;
         </button>
     
     `
@@ -85,6 +86,7 @@ function taskItem(task,index) {
     this.delete = ()=>{
         task.isComplete = null
         this.item.classList.add('hide')
+        saveTask()
         console.table(newData.tasks)
     }
 
@@ -94,6 +96,7 @@ function taskItem(task,index) {
     this.checkbox = this.item.querySelector('input')
     this.checkbox.addEventListener('change',()=>{
         task.isComplete = this.checkbox.checked
+        saveTask()
     })
 
     this.checkbox.checked = task.isComplete
@@ -123,7 +126,7 @@ function updateTask(state='all'){
 function deleteTask(index){
     newData.tasks = newData.tasks.filter((_,i)=> i!==index);
     updateTask(taskCategory);
-    saveTask(newData);
+    saveTask();
 }
 
 // delete all task
@@ -131,7 +134,7 @@ function deleteAllTask(){
     delAll.addEventListener('click',()=>{
         newData.tasks = [];
         updateTask(taskCategory);
-        saveTask(newData);
+        saveTask();
     })
 }
 
@@ -147,10 +150,12 @@ async function loadTask() {
 
         const data = await res.json();
         newData = data
+        loading.style.display = 'none'
         darkModeActive();
+        
         toggler.addEventListener('click',()=>{
             newData.darkMode = document.body.classList.contains('dark');
-            saveTask(newData);
+            saveTask();
         })
 
         
@@ -165,12 +170,13 @@ async function loadTask() {
 
 
 // save task
-function saveTask(data) {
+function saveTask() {
     fetch(`${window.origin}/save`,{
         method:'POST',
         headers:{'Content-type':"application/json"},
-        body:JSON.stringify(data)
+        body:JSON.stringify(newData)
     })
-    .then(res => res.json())
+    .then(res => console.log(newData))
+
 }
 

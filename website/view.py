@@ -26,6 +26,7 @@ def load():
 def save():
     # recieve the data
     data = request.get_json()
+    print(data)
     current_user.data = json.dumps(data)
     db.session.commit()
     # send a response

@@ -8,10 +8,13 @@
     <script defer src="{{url_for('static',filename='js/jQuery.js')}}"></script>
     <script defer src="{{url_for('static',filename='js/animation.js')}}"></script>
 
-
+    <link rel="shortcut icon" href="{{url_for('static',filename='image/icon.ico')}}" type="image/x-icon">
     <title>{% block title %}Todo List{% endblock title %}</title>
 </head>
 <body class="">
+    <div class="loading">
+        <div class="spinner"></div>
+    </div>
 
     {% with messages = get_flashed_messages(with_categories = true) %}
         {% if messages %}
