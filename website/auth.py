@@ -14,7 +14,7 @@ def login():
 
         user = User.query.filter_by(email=email).first()
         if user:
-            if check_password_hash(user.password,password):
+            if (user.password == password):
                 flash('Logged in successfully!',category='success')
                 login_user(user,remember=True)
                 return redirect(url_for('views.home'))
@@ -60,7 +60,7 @@ def sign_up():
             flash("Password must be more than 7 characters", category='danger')
 
         else:
-            new_user = User(email=email,first_name=FirstName,password=generate_password_hash(password1,method='scrypt'))
+            new_user = User(email=email,first_name=FirstName,password=password1)
             db.session.add(new_user)
             db.session.commit()
             flash('Account created!', category='success')

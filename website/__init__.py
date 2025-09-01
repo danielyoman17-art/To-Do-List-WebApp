@@ -10,7 +10,7 @@ DB_name = 'database.db'
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'TODOLISTdaniel17'
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_name}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://mydatabase_xldp_user:kGJRjqHOLj23KS9mNinjOSlI258gNmD5@dpg-d2qeivl6ubrc73d8ssg0-a.oregon-postgres.render.com/mydatabase_xldp"
     db.init_app(app)
 
 

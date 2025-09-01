@@ -440,7 +440,7 @@ textarea{
     background-color: var(--danger);
 }
 
-.popup.info{
+.popup.info,.popup.message{
     background-color: var(--info);
 }
 
