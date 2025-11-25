@@ -1,10 +1,43 @@
-this website is a Todo -list web app
-create by Daniel Yoman
-on this website we can:
--create an acount
--sign up
--log in
--log out
--add task
--delete the task
--use dark mode and a light mode
+
+# To Do list website
+
+This project is an introduction for me to the web developpement.
+this website is used to create **task** on website. And a lot of other stuff.
+this webstie is host using [pythonanywhere](https://www.pythonanywhere.com/).
+
+
+
+
+
+##  Link
+[click here](https://danielyoman17.pythonanywhere.com/)
+## Features
+
+- Light/dark mode toggle
+- Sign Up and login page
+- responsive webstie
+- create notes
+- delete notes
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/danielyoman17-art/To-Do-List-WebApp. git
+```
+
+
+Install dependencies
+
+```bash
+  pip install -r requirements.txt
+```
+
+Start the server
+
+```bash
+  python main.py
+```
+
