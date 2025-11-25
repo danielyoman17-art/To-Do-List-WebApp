@@ -10,9 +10,10 @@ this webstie is host using [pythonanywhere](https://www.pythonanywhere.com/).
 
 
 ##  Link
-[click here](https://danielyoman17.pythonanywhere.com/)
-## Features
+[click here go to the website](https://danielyoman17.pythonanywhere.com/)
 
+
+## Features
 - Light/dark mode toggle
 - Sign Up and login page
 - responsive webstie
@@ -25,7 +26,7 @@ this webstie is host using [pythonanywhere](https://www.pythonanywhere.com/).
 Clone the project
 
 ```bash
-  git clone https://github.com/danielyoman17-art/To-Do-List-WebApp. git
+  git clone https://github.com/danielyoman17-art/To-Do-List-WebApp.git
 ```
 
 
