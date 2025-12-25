@@ -12,9 +12,11 @@ def home():
 
 
 @views.route('/load',methods=['GET'])
+@login_required
 def load():
+    print(current_user.id)
     # create the data
-    data = {'darkMode':False,'tasks':[]}
+    data = []
     if current_user.data:
         data = json.loads(current_user.data)
         
@@ -23,6 +25,7 @@ def load():
 
 
 @views.route('/save',methods=['POST'])
+@login_required
 def save():
     # recieve the data
     data = request.get_json()

@@ -432,7 +432,7 @@ textarea{
 }
 
 .popup.show{
-    top: 50px;
+    top: 30px;
     transition: top 0.5s ease-in;
 }
 
@@ -440,7 +440,7 @@ textarea{
     background-color: var(--danger);
 }
 
-.popup.info{
+.popup.info, .popup.message{
     background-color: var(--info);
 }
 

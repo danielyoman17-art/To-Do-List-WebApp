@@ -19,12 +19,11 @@ document.querySelector('#cancel , .modal-overlay , #addTask').addEventListener('
     }
 })
 
-
-function darkModeActive(){
-    if (newData.darkMode == true){
-        $('body').addClass('dark')
-    }
-}
+toggler.addEventListener('click',()=>{
+    body = document.querySelector('body')
+    body.classList.add('dark')
+    console.log(body.classList)
+})
 
 
 // updateTask(taskCategory);
@@ -52,17 +51,21 @@ function createTask(){
             text:inputValue,
             isComplete:false
         }
-        newData.tasks.push(newTask)
+        console.table(newTask)
+        newData.push(newTask)
         inputValue.value = '';
         return newTask
     }
 }
 
+
 addTask.addEventListener('click',()=>{
     new_task = createTask();
-    newItem = new taskItem(newTask,newData.tasks.length-1)
-    newItem.update()
-    saveTask(newData);
+    if (new_task){
+        newItem = new taskItem(new_task,newData.length-1)
+        newItem.update()
+        saveTask(newData);
+    }
 })
 
 
@@ -105,13 +108,13 @@ function taskItem(task,index) {
 
 function updateTask(state='all'){
     taskList.innerHTML = "";
-    newData.tasks = newData.tasks.filter((task)=> task.isComplete !== null)
-    let updatingTask = newData.tasks
+    newData = newData.filter((task)=> task.isComplete !== null)
+    let updatingTask = newData
     if(state == 'complete'){
-        updatingTask = newData.tasks.filter((task)=> task.isComplete === true)
+        updatingTask = newData.filter((task)=> task.isComplete === true)
     }
     if(state == 'uncomplete'){
-        updatingTask = newData.tasks.filter((task)=> task.isComplete === false)
+        updatingTask = newData.filter((task)=> task.isComplete === false)
     }
     updatingTask.forEach((task,index)=>{
         item = new taskItem(task,index)
@@ -123,7 +126,7 @@ function updateTask(state='all'){
 
 // delete task
 function deleteTask(index){
-    newData.tasks = newData.tasks.filter((_,i)=> i!==index);
+    newData = newData.filter((_,i)=> i!==index);
     updateTask(taskCategory);
     saveTask();
 }
@@ -131,7 +134,7 @@ function deleteTask(index){
 // delete all task
 function deleteAllTask(){
     delAll.addEventListener('click',()=>{
-        newData.tasks = [];
+        newData = [];
         updateTask(taskCategory);
         saveTask();
     })
@@ -150,14 +153,7 @@ async function loadTask() {
         const data = await res.json();
         newData = data
         loading.style.display = 'none'
-        darkModeActive();
-        
-        toggler.addEventListener('click',()=>{
-            newData.darkMode = document.body.classList.contains('dark');
-            saveTask();
-        })
 
-        
         deleteAllTask();
         updateTask(taskCategory);
 
