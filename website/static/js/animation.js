@@ -1,7 +1,3 @@
-$('#toggler-mode').click(()=>{
-    $('body').toggleClass('dark')
-})
-
 $('#toggler-dropdown').click(()=>{
     $(".dropdown").addClass('active')
     $('.overlay').css('display','block')

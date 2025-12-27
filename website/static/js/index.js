@@ -5,6 +5,11 @@ const delAll = document.querySelector('#delAll')
 const navLinks = document.querySelectorAll('.nav-link')
 const toggler = document.querySelector('#toggler-mode')
 const loading = document.querySelector('.loading')
+const body = document.querySelector('body')
+
+
+theme = localStorage.getItem('theme')
+body.className = theme
 
 
 let newData;
@@ -20,9 +25,8 @@ document.querySelector('#cancel , .modal-overlay , #addTask').addEventListener('
 })
 
 toggler.addEventListener('click',()=>{
-    body = document.querySelector('body')
-    body.classList.add('dark')
-    console.log(body.classList)
+    body.classList.toggle('dark')
+    localStorage.setItem('theme',body.className)
 })
 
 
@@ -44,25 +48,16 @@ function toggleNav(e){
 
 
 // add task
-function createTask(){
+addTask.addEventListener('click',()=>{
     inputValue = inputTask.value.trim();
     if (inputValue.length > 0 && inputValue.length < 100){
         newTask = {
             text:inputValue,
             isComplete:false
         }
-        console.table(newTask)
         newData.push(newTask)
         inputValue.value = '';
-        return newTask
-    }
-}
-
-
-addTask.addEventListener('click',()=>{
-    new_task = createTask();
-    if (new_task){
-        newItem = new taskItem(new_task,newData.length-1)
+        newItem = new taskItem(newTask,newData.length-1)
         newItem.update()
         saveTask(newData);
     }
