@@ -3,8 +3,24 @@ from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
 
+# import oauth
+from authlib.integrations.flask_client import OAuth
+
+
 db = SQLAlchemy()
 DB_name = 'database.db'
+oauth = OAuth()
+google = oauth.register(
+    #project name
+    "ToDo List Oauth",
+    #client id and secret from google
+    client_id='375822891878-c0d3pciv2rcf0r2mc7gtl3rflkik67l7.apps.googleusercontent.com',
+    client_secret='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',
+    
+    #just copy you don't need to know what the hell this shit is doing
+    server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
+    client_kwargs={'scope': 'openid email profile','promot':'consent'},
+)
 
 
 def create_app():
@@ -12,7 +28,10 @@ def create_app():
     app.config['SECRET_KEY'] = 'TODOLISTdaniel17'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_name}'
     db.init_app(app)
+    oauth.init_app(app)
 
+
+    #create oauth for google
 
     from .view import views
     from .auth import auth

@@ -2,6 +2,10 @@ from flask import Blueprint,render_template,request,flash,redirect,url_for
 from .models import User,db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import login_user,login_required,logout_user,current_user
+from . import google
+from rich.console import Console
+
+console = Console()
 
 auth = Blueprint('auth',__name__)
 
@@ -25,12 +29,6 @@ def login():
 
     return render_template('login.html')
 
-
-@auth.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    return redirect(url_for('auth.login'))
 
 
 @auth.route('/sign-up',methods=['POST','GET'])
@@ -69,3 +67,40 @@ def sign_up():
 
 
     return render_template('signUp.html')
+
+
+
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('auth.login'))
+
+
+
+@auth.route('/sign-in-google')
+def sign_in_google():
+    redirect_uri = url_for('auth.authorize',_external = True)
+    return google.authorize_redirect(redirect_uri)
+
+
+
+@auth.route('/authorize')
+def authorize():
+    token = google.authorize_access_token()
+    userInfo = token['userinfo']
+    user_email = userInfo['email']
+    user = User.query.filter_by(email=user_email).first()
+    
+    if user:
+        flash('Logged in successfully!',category='success')
+        login_user(user,remember=True)
+        return redirect(url_for('views.home'))
+    else:
+        new_user = User(email=userInfo['email'],first_name=userInfo['name'],password=generate_password_hash(userInfo['sub'],method='scrypt'))
+        db.session.add(new_user)
+        db.session.commit()
+        flash('Logged in successfully!',category='success')
+        login_user(new_user,remember=True)
+        return redirect(url_for('views.home'))
+        
