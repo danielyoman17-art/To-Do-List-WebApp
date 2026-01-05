@@ -14,7 +14,6 @@ def home():
 @views.route('/load',methods=['GET'])
 @login_required
 def load():
-    print(current_user.id)
     # create the data
     data = []
     if current_user.data:

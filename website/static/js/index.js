@@ -8,12 +8,9 @@ const loading = document.querySelector('.loading')
 const body = document.querySelector('body')
 
 
-theme = localStorage.getItem('theme')
-body.className = theme
-
-
 let newData;
 
+body.className = localStorage.getItem('theme') || 'light'
 loadTask();
 
 
@@ -25,8 +22,10 @@ document.querySelector('#cancel , .modal-overlay , #addTask').addEventListener('
 })
 
 toggler.addEventListener('click',()=>{
+    body.classList.toggle('light')
     body.classList.toggle('dark')
-    localStorage.setItem('theme',body.className)
+    theme = localStorage.setItem('theme',body.className)
+    console.log(localStorage.getItem('theme'))
 })
 
 

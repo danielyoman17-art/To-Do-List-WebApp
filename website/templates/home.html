@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="{{url_for('static',filename='image/icon.ico')}}" type="image/x-icon">
     <title>{% block title %}Todo List{% endblock title %}</title>
 </head>
-<body class="">
+<body class="light">
 
     {% with messages = get_flashed_messages(with_categories = true) %}
         {% if messages %}

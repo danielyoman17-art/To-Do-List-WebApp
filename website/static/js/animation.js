@@ -3,6 +3,7 @@ $('#toggler-dropdown').click(()=>{
     $('.overlay').css('display','block')
 })
 
+
 $('.overlay').click(()=>{
     $(".dropdown").removeClass('active')
     $('.overlay').css('display','none')
@@ -22,6 +23,3 @@ $('.modal-overlay').hide()
 $('.btn-add').click(()=>{
     $('.modal-overlay').fadeIn()
 })
-
-
-
