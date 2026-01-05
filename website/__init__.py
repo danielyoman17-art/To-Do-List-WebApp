@@ -14,8 +14,8 @@ google = oauth.register(
     #project name
     "ToDo List Oauth",
     #client id and secret from google
-    client_id='375822891878-c0d3pciv2rcf0r2mc7gtl3rflkik67l7.apps.googleusercontent.com',
-    client_secret='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',
+    client_id='<Your-google-client-id>',
+    client_secret='<Your-google-secre>',
     
     #just copy you don't need to know what the hell this shit is doing
     server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
