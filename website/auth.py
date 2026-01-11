@@ -6,6 +6,7 @@ from . import google
 
 auth = Blueprint('auth',__name__)
 
+
 @auth.route('/logout')
 @login_required
 def logout():
@@ -17,7 +18,7 @@ def logout():
 @auth.route('/login',methods=['POST','GET'])
 def login():
     
-    if session['auth_error']:
+    if "auth_error" in session and session['auth_error']:
         session['auth_error'] = False
         flash('We could not validate the response from your social login provider. Please try again or use our alternative sign-in or sign-up options.',category='danger')
     

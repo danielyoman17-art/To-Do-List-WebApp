@@ -3,6 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
 
+#get secret information
+from dotenv import load_dotenv
+import os
+
 # import oauth
 from authlib.integrations.flask_client import OAuth
 
@@ -14,12 +18,16 @@ google = oauth.register(
     #project name
     "ToDo List Oauth",
     #client id and secret from google
-    client_id='<Your-google-client-id>',
-    client_secret='<Your-google-secre>',
+    client_id=os.getenv('CLIENT_ID'),
+    client_secret=os.getenv('CLIENT_SECRET'),
     
     #just copy you don't need to know what the hell this shit is doing
     server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
-    client_kwargs={'scope': 'openid email profile','promot':'consent'},
+    client_kwargs={
+        "scope": "openid email profile",
+        "access_type": "offline",
+        "prompt": "consent"
+    }
 )
 
 

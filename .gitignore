@@ -2,3 +2,4 @@
 front_end
 website/__pycache__
 *.db
+.env
