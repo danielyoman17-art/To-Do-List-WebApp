@@ -24,7 +24,7 @@ this webstie is host using [pythonanywhere](https://www.pythonanywhere.com/).
 ## Run Locally
 
 Because of google Oauth you need a google Oauth client ID and a secret key so you should watch this youtube video
-[How to set up Google OAuth 2.0 with the authlib pakcage in Python]("https://www.youtube.com/watch?v=BgYo-wpqi3s&t=6s")
+[How to set up Google OAuth 2.0 with the authlib pakcage in Python](https://www.youtube.com/watch?v=BgYo-wpqi3s&t=6s)
 
 Clone the project
 
