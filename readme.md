@@ -17,7 +17,7 @@ this webstie is host using [pythonanywhere](https://www.pythonanywhere.com/).
 - Light/dark mode toggle
 - Sign Up and login page
 - responsive webstie
-- create notes, delete note
+- create and delete note
 - register with google
 
 
