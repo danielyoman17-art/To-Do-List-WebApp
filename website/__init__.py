@@ -7,8 +7,12 @@ from flask_login import LoginManager
 from dotenv import load_dotenv
 import os
 
+load_dotenv('.env')
+
 # import oauth
 from authlib.integrations.flask_client import OAuth
+
+
 
 
 db = SQLAlchemy()
@@ -17,6 +21,7 @@ oauth = OAuth()
 google = oauth.register(
     #project name
     "ToDo List Oauth",
+    
     #client id and secret from google
     client_id=os.getenv('CLIENT_ID'),
     client_secret=os.getenv('CLIENT_SECRET'),

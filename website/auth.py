@@ -45,7 +45,7 @@ def login():
 
 @auth.route('/sign-up',methods=['POST','GET'])
 def sign_up():
-    if session['auth_error']:
+    if "auth_error" in session and session['auth_error']:
         session['auth_error'] = False
         flash('We could not validate the response from your social login provider. Please try again or use our alternative sign-in or sign-up options.',category='danger')
     
@@ -107,7 +107,7 @@ def authorize():
             login_user(user,remember=True)
             return redirect(url_for('views.home'))
         else:
-            new_user = User(email=userInfo['email'],first_name=userInfo['name'],password=generate_password_hash(userInfo['sub'],method='scrypt'))
+            new_user = User(email=userInfo['email'],first_name=userInfo['given_name'],password=generate_password_hash(userInfo['sub'],method='scrypt'))
             db.session.add(new_user)
             db.session.commit()
             flash('Logged in successfully!',category='success')
