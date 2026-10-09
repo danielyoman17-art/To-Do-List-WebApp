@@ -9,7 +9,7 @@
     <script defer src="{{url_for('static',filename='js/animation.js')}}"></script>
 
     <link rel="shortcut icon" href="{{url_for('static',filename='image/icon.ico')}}" type="image/x-icon">
-    <title>{% block title %}Todo List{% endblock title %}</title>
+    <title>{% block title %}EasyDo{% endblock title %}</title>
 </head>
 <body class="light">
 
@@ -111,8 +111,8 @@
                 <textarea id="input-task" placeholder="Ender a new task" ></textarea>
                 <p class="len-input"></p>
                 <div class="bottom-section">
-                    <button class="btn btn-primary" id="addTask">add</button>
-                    <button class="btn btn-dark" id="cancel">cancel</button>
+                    <button class="btn btn-dark" id="cancel">Cancel</button>
+                    <button class="btn btn-primary" id="addTask">Create</button>
                 </div>
             </div>
         </div>
@@ -130,6 +130,7 @@
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8 0C8.55228 0 9 0.447715 9 1C9 1 9 7 9 7C9 7 15 7 15 7C15.5523 7 16 7.44771 16 8C16 8.55228 15.5523 9 15 9C15 9 9 9 9 9C9 9 9 15 9 15C9 15.5523 8.55228 16 8 16C7.44771 16 7 15.5523 7 15C7 15 7 9 7 9C7 9 1 9 1 9C0.447715 9 0 8.55228 0 8C0 7.44771 0.447715 7 1 7C1 7 7 7 7 7C7 7 7 1 7 1C7 0.447715 7.44771 0 8 0C8 0 8 0 8 0Z" fill="#F2F2F2" fill-rule="evenodd" />
             </svg>
+            Add new task
         </button>
     </div>
     <script defer src="{{url_for('static',filename='js/index.js')}}"></script>
